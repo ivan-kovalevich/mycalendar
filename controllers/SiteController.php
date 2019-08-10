@@ -44,6 +44,9 @@ class SiteController extends Controller
     public function actions()
     {
         return [
+            'about' => [
+                'class' => 'app\controllers\actions\site\SiteAboutAction',
+            ],
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
@@ -61,7 +64,21 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if (!\Yii::$app->session->isActive) {
+            \Yii::$app->session->open();
+            \Yii::$app->session->set('visitedPage', 'index');
+        }
+//        switch (\Yii::$app->session->get('visitedPage','index')) {
+////            case 'create':
+////                return $this->redirect('activity/create');
+////                break;
+//            case 'contact':
+//                return $this->render('contact');
+//                break;
+//            default:
+                return $this->render('index');
+        //}
+
     }
 
     /**
@@ -93,6 +110,7 @@ class SiteController extends Controller
      */
     public function actionLogout()
     {
+
         Yii::$app->user->logout();
 
         return $this->goHome();
@@ -105,6 +123,7 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+        //\Yii::$app->session->set('visitedPage', 'contact');
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -114,15 +133,5 @@ class SiteController extends Controller
         return $this->render('contact', [
             'model' => $model,
         ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 }
