@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var $model \app\models\Activity
+ */
 use kartik\datetime\DateTimePicker;
 
 ?>
@@ -50,8 +53,23 @@ use kartik\datetime\DateTimePicker;
     <div class="col-md-4">
         <?= $form->field($model, 'isRepeated')->checkbox() ?>
     </div>
+    <div class="col-md-4">
+        <?= $form->field($model, 'repeatedType')->dropDownList($model::REPEATED_TYPE) ?>
+    </div>
     <div class="col-md-8">
         <?= $form->field($model, 'isBlocked')->checkbox() ?>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <?=$form->field($model,'useNotification')->checkbox()?>
+    </div>
+    <div class="col-md-4">
+        <?=$form->field($model,'email',['enableAjaxValidation'=>true,'enableClientValidation'=>false]);?>
+    </div>
+    <div class="col-md-4">
+        <?=$form->field($model,'emailRepeat',['enableAjaxValidation'=>true,'enableClientValidation'=>false]);?>
     </div>
 </div>
 <div class="row">
