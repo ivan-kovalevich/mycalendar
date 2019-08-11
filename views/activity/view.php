@@ -12,7 +12,7 @@
     </div>
     <div class="col-md-12">
         <?php if($model->file):?>
-        <img width="200" src="/images/<?=$model->file;?>">
+        <?=\yii\helpers\Html::img('/images/'.$model->file,['width'=>250,'id'=>'id_1'])?>
         <?php endif;?>
     </div>
 </div>
