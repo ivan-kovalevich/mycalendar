@@ -28,6 +28,8 @@ class Activity extends Model
     public $email;
     public $emailRepeat;
 
+    public $file;
+
     // public typeRepeat; //ежечасно, ежедневно, ежемесячно, ежегодно
 
     public function beforeValidate()
@@ -49,6 +51,7 @@ class Activity extends Model
 //            ['inn','string','length'=>10],
             ['dateStart', 'date', 'format' => 'php:Y-m-d'],
             ['dateStart', 'string'],
+            ['file','file','extensions' => ['jpg','png']],
             ['repeatedType','in','range' => array_keys(self::REPEATED_TYPE)],
             ['dateEnd', 'string'],
             ['email','email'],

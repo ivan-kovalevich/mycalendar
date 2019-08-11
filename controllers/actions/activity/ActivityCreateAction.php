@@ -21,7 +21,7 @@ class ActivityCreateAction extends BaseAction
             }
 
             if (\Yii::$app->activity->createActivity($model)) {
-//                print_r('ok');exit;
+                return $this->controller->render('view',['model'=>$model]);
             } else {
 //                print_r('no');exit;
             }

@@ -11,6 +11,7 @@ use kartik\datetime\DateTimePicker;
         <h3>Новое событие</h3>
     </div>
 </div>
+<strong><?=Yii::getAlias('@webroot');?></strong>
 <?php $form = \yii\bootstrap\ActiveForm::begin();?>
 <div class="row">
     <div class="col-md-12">
@@ -70,6 +71,11 @@ use kartik\datetime\DateTimePicker;
     </div>
     <div class="col-md-4">
         <?=$form->field($model,'emailRepeat',['enableAjaxValidation'=>true,'enableClientValidation'=>false]);?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <?=$form->field($model,'file')->fileInput()?>
     </div>
 </div>
 <div class="row">
